@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FREE CREDIT</title>
+<meta name="description" content="Dark Demon Cultivation cinematic landing page with full animation and effects.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #ff2b2b;
+  --accent-dark: #6a0000;
+  --muted: #bfa07a;
+  --bg-dark: #070204;
+  --glass: rgba(20,6,6,0.55);
+}
+* { box-sizing: border-box; margin:0; padding:0; }
+html, body { height:100%; font-family: Inter, system-ui, sans-serif; background: var(--bg-dark); color: var(--muted); overflow-x:hidden; }
+a { text-decoration:none; color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 5; }
+
+/* Navbar */
+nav { width:100%; background: rgba(20,0,0,0.8); border-bottom:2px solid #700000; padding:12px 20px; position: fixed; top:0; left:0; z-index: 20; display:flex; align-items:center; justify-content:space-between; }
+.nav a { margin-right:12px; padding:6px 12px; border-radius:8px; font-weight:600; }
+.nav a.primary { background: linear-gradient(180deg, var(--accent), var(--accent-dark)); color:#111; box-shadow:0 8px 20px rgba(255,43,43,0.2); }
+
+/* Hero */
+.hero { display:flex; justify-content: space-between; align-items:center; padding-top:100px; position:relative; z-index:10; }
+.hero .copy { max-width:700px; }
+.hero h1 { font-family:Cinzel, serif; font-size:42px; color:#ffd8a6; text-shadow:0 6px 18px rgba(255,43,43,0.3); margin-bottom:16px; }
+.hero p { font-size:16px; margin-bottom:18px; color:#dbc7a3; }
+.cta-row { display:flex; gap:12px; margin-bottom:12px; }
+.cta { padding:14px 24px; border-radius:12px; font-weight:800; cursor:pointer; transition:0.2s; }
+.cta.primary { background: linear-gradient(180deg,var(--accent),var(--accent-dark)); color:#111; box-shadow:0 12px 36px rgba(255,43,43,0.2); }
+.cta.ghost { background:transparent; border:1px solid rgba(255,43,43,0.12); color:var(--muted); }
+.small-meta { font-size:13px; color:#bfa07a; }
+
+
+/* Grid Cards */
+.grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:18px; margin-top:18px; }
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; overflow:hidden; border:1px solid rgba(255,43,43,0.06); box-shadow:0 6px 22px rgba(0,0,0,0.6); transition: transform 0.22s ease, box-shadow 0.22s ease; }
+.card:hover { transform: translateY(-8px); box-shadow:0 20px 48px rgba(255,43,43,0.1); }
+.card img { width:100%; height:140px; object-fit:cover; display:block; }
+.card .meta { padding:12px; text-align:center; font-weight:700; color:#ffd9a8; }
+
+/* Portal */
+.portal-wrap { text-align:center; margin-top:26px; }
+.portal { display:inline-block; padding:16px 44px; border-radius:999px; background: linear-gradient(180deg,var(--accent),#7b0000); color:#100; font-weight:900; position:relative; overflow:visible; text-decoration:none; transition:0.3s; box-shadow:0 0 24px rgba(255,43,43,0.4);}
+.portal:hover { transform: scale(1.06); box-shadow:0 0 48px rgba(255,43,43,0.8); }
+.portal.glitch { position: relative; }
+.portal.glitch:before, .portal.glitch:after { content: attr(data-text); position:absolute; left:0; top:0; width:100%; height:100%; }
+.portal.glitch:before { color: var(--accent); mix-blend-mode: screen; clip-path: polygon(0 0,100% 0,100% 70%,0 70%); transform: translate(6px,-2px); }
+.portal.glitch:after { color:#fff; mix-blend-mode: overlay; clip-path: polygon(0 30%,100% 30%,100% 100%,0 100%); transform: translate(-6px,2px); }
+.portal.glitch.active { animation: glitch 0.36s steps(4,end); }
+@keyframes glitch {0%{transform:translateX(0)}20%{transform:translateX(-4px) skewX(-2deg)}40%{transform:translateX(4px) skewX(2deg)}60%{transform:translateX(-2px) skewX(-1deg)}80%{transform:translateX(2px) skewX(1deg)}100%{transform:translateX(0)}}
+
+/* Floating sword & demon */
+.sword { position:fixed; left:-120px; top:30%; width:84px; filter: drop-shadow(0 0 32px rgba(255,43,43,0.3)); animation: swordFly 12s linear infinite; z-index:15; }
+@keyframes swordFly {0%{transform:translateX(0) rotate(0)}50%{transform:translateX(130vw) rotate(360deg)}100%{transform:translateX(260vw) rotate(720deg)}}
+
+/* Demon floating only */
+.demon { position:fixed; width:120px; max-width:12vw; pointer-events:none; z-index:15; filter: drop-shadow(0 0 32px #ff2b2b); animation: demonFloat 4s ease-in-out infinite alternate; }
+@keyframes demonFloat {0% {transform: translateY(0);}50% {transform: translateY(-28px);}100% {transform: translateY(0);}}
+
+/* Runes */
+.rune, .talisman { position:fixed; font-size:14px; color:rgba(255,43,43,0.65); animation:fall 6s linear infinite; z-index:10; text-shadow:0 0 8px #ff2b2b;}
+@keyframes fall {0%{transform:translateY(-10vh)}100%{transform:translateY(120vh);opacity:0}}
+
+/* Lightning overlay */
+.lightning-overlay{position:fixed;inset:0;pointer-events:none;background-image:url('https://static.gwvkyk.com/media/red-lightning-overlay.png');background-size:cover;mix-blend-mode:screen;opacity:0;animation:flash 6s infinite; z-index:12;}
+@keyframes flash{0%,88%,100%{opacity:0}90%{opacity:.68}93%{opacity:.22}95%{opacity:.9}}
+
+/* Qi sparks */
+.qi-spark { position: fixed; width: 6px; height: 6px; background: radial-gradient(circle, #ff3 0%, #ff0000 80%); border-radius: 50%; box-shadow:0 0 16px #ff2b2b; animation: qiGlow 3s infinite ease-in-out; z-index:10; }
+@keyframes qiGlow {0% {opacity:.2; transform:scale(.6);}50% {opacity:.9; transform:scale(1.6);}100% {opacity:.2; transform:scale(.6);}}
+
+/* Particle trail */
+.particle { position:fixed; width:4px; height:4px; background:#ff2b2b; border-radius:50%; pointer-events:none; z-index:20; opacity:0.8; mix-blend-mode:screen; animation:particleFade 1s linear forwards;}
+@keyframes particleFade{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(0.3);}}
+
+.footer { margin-top:44px; padding:18px 0; border-top:1px solid rgba(255,255,255,0.02); color:#a68e6a; font-size:13px; text-align:center; }
+
+@media(max-width:900px){.hero{flex-direction:column;}.demon,.sword{display:none;}}
+@media(max-width:420px){.hero h1{font-size:28px;}}
+</style>
+</head>
+<body>
+
+<!-- Parallax Layers -->
+<div class="parallax-wrap" aria-hidden="true">
+  <div class="parallax-layer layer-back" style="background:url('https://static.gwvkyk.com/media/cyber-nether-nebula.png');opacity:0.55;filter:blur(18px);position:fixed;inset:0;background-size:cover;" data-depth="0.08"></div>
+  <div class="parallax-layer layer-mid" style="background:url('https://static.gwvkyk.com/media/ruins-midground.png');opacity:0.7;position:fixed;inset:0;background-size:cover;" data-depth="0.18"></div>
+  <div class="parallax-layer layer-front" style="background:url('https://static.gwvkyk.com/media/dragon-altar-foreground.png');opacity:0.85;position:fixed;inset:0;background-size:cover;" data-depth="0.32"></div>
+</div>
+
+<div class="lightning-overlay" aria-hidden="true"></div>
+
+<img src="https://static.gwvkyk.com/media/4f956a0b96296b8206158.png" class="sword" alt="Flying Demon Sword">
+<img src="https://static.gwvkyk.com/media/de813bf596296f37d8800.png" class="demon" style="top:50px; left:10vw;">
+<img src="https://static.gwvkyk.com/media/647942a696296ba46a99f.png" class="demon" style="top:120px; left:50vw;">
+<img src="https://static.gwvkyk.com/media/9c877e0796296f48a5d6f.png" class="demon" style="top:200px; left:30vw;">
+
+<script>
+
+<!-- Floating Runes / Talismans -->
+<script>
+const runes = ['魔','邪','暗','魂','烙','诅','魇','裂'];
+for(let i=0;i<25;i++){
+  const r=document.createElement('div'); r.className='rune'; r.textContent=runes[Math.floor(Math.random()*runes.length)];
+  r.style.left=Math.random()*100+'vw';
+  r.style.animationDelay=(Math.random()*6)+'s';
+  document.body.appendChild(r);
+}
+// Floating Qi Sparks
+for(let i=0;i<30;i++){
+  const q=document.createElement('div'); q.className='qi-spark';
+  q.style.left=Math.random()*100+'vw';
+  q.style.top=Math.random()*100+'vh';
+  q.style.animationDuration=(1+Math.random()*2)+'s';
+  document.body.appendChild(q);
+}
+</script>
+
+<!-- Navbar -->
+<nav role="navigation">
+  <span>☠ Cyber Hell Dragon</span>
+  <div>
+    <a href="#register">Oneplay</a>
+    <a href="#register">MBS888</a>
+    <a href="#register">GE88</a>
+    <a href="#register">KOI8</a>
+  </div>
+  <a href="#portalLink" class="primary">Trusted Singapore Company</a>
+</nav>
+
+<div class="container">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="copy">
+      <h1>Claim Free Credit</h1>
+      <p>ONEPLAY BONUS</p>
+       <p>Register Free Credit $3, Welcome Bonus 168% ; Daily Check in Bonus $24; Social media Bonus $30; Total Daily Mission $48; Total Weekly Mission $228; Rebate 5%; Lucky Spin.   </p>
+       <p>MBS888 BONUS</p>
+       <p>Register Free Credit $8, Welcome Bonus 100% ; Daily Check in Bonus $24; KYC Bonus $40; Total Daily Mission $135; Total Weekly Mission $500; Rebate 5% ; Lucky Spin.   </ </p>
+       <p>GE88 BONUS </p>
+       <p>Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Follow Stay Ahead $20; Total Daily Mission $270; Total Weekly Mission $755; Rebate 5%.   </ </p>
+       <p>KOi8 BONUS</p>
+       <p>Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Social Media Bonus $20; Total Daily Mission $135; Total Weekly Mission $500; Rebate 10%.   </ </p>
+       
+       <p> Register to unlock Free credit and bonus spins. </p>
+       <p>Minigames can only be played using a special code — Click Request Code, start playing instantly, and stand a chance to win exciting prizes. Jump in now, have fun, and enjoy the thrill of winning as you play. </p>
+      <div class="cta-row">
+        <a class="cta primary" id="portalLink" href="https://t.me/GE88SG_CS4" target="_blank" data-text="CALL THE ALTAR">🔥 Request Code Minigames </a>
+        <button class="cta ghost" id="playAmbience">▶ Demo</button>
+      </div>
+      <div class="small-meta">Safe & secure. Links open in new tab.</div>
+    </div>
+
+    <!-- Quick Register Cards -->
+    <aside>
+      <div class="grid" id="register">
+        <a class="card" href="https://1playsg.vip/RFONEPLAYLIYANAFB" target="_blank"><img src="https://static.gwvkyk.com/media/bf5d8b3931296ff662504.jpg" alt="Oneplay"><div class="meta">Register Oneplay</div></a>
+        <a class="card" href="https://mbs888.online/RFMBS888STELLAFB" target="_blank"><img src="https://static.gwvkyk.com/media/e223d5d8312960c4f5a53.jpg" alt="MBS888"><div class="meta">Register MBS888</div></a>
+        <a class="card" href="https://ge88s.club/RFGE88BECCAFB" target="_blank"><img src="https://static.gwvkyk.com/media/7dd408f831296a183172f.jpg" alt="GE88"><div class="meta">Register GE88</div></a>
+        <a class="card" href="https://koi8.me/RFKOI8THESAFB" target="_blank"><img src="https://static.gwvkyk.com/media/0bfe6ea8312966e07732e.jpg" alt="KOI8"><div class="meta">Register KOI8</div></a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Mini Games -->
+  <section id="games">
+    <h2 style="font-family:Cinzel, serif;color:#ffd9a8;margin:16px 0;">Mini Games</h2>
+    <div class="grid">
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/068d205a04296781c899f.jpg" alt="Scratch Card"><div class="meta">Scratch Card</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/2aa1952c04296bdc1ec54.jpg" alt="Plinko"><div class="meta">Plinko</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/fb21d61c042966932f5d0.jpg" alt="Spin Wheel"><div class="meta">Spin Wheel</div></a>
+    </div>
+  </section>
+
+  <!-- Download Apps -->
+  <section class="download-apps">
+    <h2 style="font-family:Cinzel, serif;color:#ffd9a8;margin:16px 0;">Download Apps</h2>
+    <div class="grid" style="grid-template-columns: repeat(auto-fill,minmax(120px,1fr)); gap:12px;">
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/2cb6b7b5862967d4a302e.png" alt="MEGA888"><div class="meta">MEGA888</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/51560315862967d068e73.png" alt="PUSSY888"><div class="meta">PUSSY888</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/29d74a17862961ba6b79d.png" alt="918KISS"><div class="meta">918KISS</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/d0c5bc67862969751b2fb.png" alt="918KAYA"><div class="meta">918KAYA</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/evo888.png" alt="EVO888"><div class="meta">EVO888</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/greatwall.png" alt="GREATWALL"><div class="meta">GREATWALL</div></a>
+      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/lionking.png" alt="LIONKING"><div class="meta">LIONKING</div></a>
+    </div>
+  </section>
+
+  <!-- Portal Altar -->
+  <div class="portal-wrap">
+    <a class="portal" id="portalButton" href="https://t.me/GE88SG_CS4" target="_blank" data-text="CALL THE ALTAR">Request Code Minigames 🔑</a>
+  </div>
+
+  <footer class="footer">© TrustedSite • Singapore • 2025</footer>
+</div>
+
+<!-- Audio -->
+<audio id="ambience" loop>
+  <source src="https://static.gwvkyk.com/media/demon-ambience.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Parallax pointer
+const layers = document.querySelectorAll('.parallax-layer');
+window.addEventListener('mousemove', e=>{
+  const x=(e.clientX-window.innerWidth/2)/window.innerWidth;
+  const y=(e.clientY-window.innerHeight/2)/window.innerHeight;
+  layers.forEach(layer=>{
+    const depth=parseFloat(layer.getAttribute('data-depth'))||0;
+    layer.style.transform=`translate3d(${x*depth*40}px,${y*depth*30}px,0)`;
+  });
+});
+
+// Glitch effect on portal button
+const portalBtn = document.getElementById('portalButton');
+portalBtn.classList.add('glitch');
+portalBtn.setAttribute('data-text', portalBtn.textContent);
+portalBtn.addEventListener('mouseenter', ()=>{
+  portalBtn.classList.add('active'); 
+  setTimeout(()=>portalBtn.classList.remove('active'),360);
+});
+
+// Play ambience
+const ambience=document.getElementById('ambience');
+document.getElementById('playAmbience').addEventListener('click', ()=>{
+  if(ambience.paused){ ambience.volume=0.45; ambience.play(); } 
+  else { ambience.pause(); }
+});
+</script>
+
+</body>
+</html>
