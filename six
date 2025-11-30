@@ -1,247 +1,608 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FREE CREDIT</title>
-<meta name="description" content="Dark Demon Cultivation cinematic landing page with full animation and effects.">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FREE CREDIT — Midnight Neon (Premium Final)</title>
+<meta name="description" content="Midnight Neon — Premium landing, neon glass, mini games, register, download APKs.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --accent:#ff2b2b; --accent-dark:#6a0000; --muted:#bfa07a; --bg-dark:#070204;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg-dark);color:var(--muted);overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.container{max-width:1200px;margin:0 auto;padding:20px;padding-top:220px;position:relative;z-index:2}
+  :root{
+    --bg:#05060a;
+    --panel:#071021;
+    --glass: rgba(255,255,255,0.03);
+    --neon-cyan: #00f0ff;
+    --neon-mag: #c56bff;
+    --neon-amber: #ffb86b;
+    --muted:#cfe8f0;
+    --card-border: rgba(255,255,255,0.06);
+    --shadow: 0 14px 40px rgba(0,0,0,0.75);
+  }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(15,6,6,0.9);border-bottom:2px solid #700000;z-index:120}
-nav .brand{font-family:Cinzel, serif;color:#ffd9a8;font-weight:700}
-nav .links a{margin-left:10px;padding:6px 10px;border-radius:8px;font-weight:600}
-nav .primary{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#111;padding:8px 12px;border-radius:8px;box-shadow:0 8px 20px rgba(255,43,43,.18)}
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;background:linear-gradient(180deg,#02030a,var(--bg));color:var(--muted);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
 
-/* DEMON (fixed, sejajar) */
-.demon-wrap{position:fixed;top:64px;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;display:flex;justify-content:space-between;align-items:center;pointer-events:none;z-index:110;padding:0 24px}
-.demon-wrap img{width:110px;max-width:12vw;filter:drop-shadow(0 0 28px #ff2b2b);animation:demonFloat 4s ease-in-out infinite}
-@keyframes demonFloat{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
-@media(max-width:900px){.demon-wrap{display:none}}
+  /* video background */
+  .bg-video-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:flex;align-items:center;justify-content:center}
+  .bg-video-wrap video{min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.55) contrast(1.05) saturate(1.1);transform:scale(1.02)}
+  .bg-overlay{position:fixed;inset:0;background:linear-gradient(180deg, rgba(6,8,12,0.2), rgba(2,3,8,0.55));z-index:1;pointer-events:none;mix-blend-mode:soft-light}
 
-/* SWORD floating */
-.sword{position:fixed;left:-120px;top:25%;width:84px;filter:drop-shadow(0 0 32px rgba(255,43,43,.3));animation:swordFly 12s linear infinite;z-index:105}
-@keyframes swordFly{0%{transform:translateX(0) rotate(0)}50%{transform:translateX(130vw) rotate(360deg)}100%{transform:translateX(260vw) rotate(720deg)}}
+  /* NAV */
+  nav{position:fixed;left:0;right:0;top:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.12));backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.04);z-index:220}
+  .brand{font-family:Orbitron, sans-serif;color:var(--neon-cyan);font-size:20px;letter-spacing:1px}
+  .nav-right{display:flex;gap:12px;align-items:center}  
+  .nav-link{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;background:transparent}
+  .btn-primary{background:linear-gradient(180deg,var(--neon-cyan),var(--neon-mag));padding:8px 14px;border-radius:10px;color:#04101a;font-weight:800;box-shadow:0 8px 28px rgba(197,107,255,0.12)}
+  .toggle{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;cursor:pointer}
+  .toggle .dot{width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,var(--neon-cyan),var(--neon-mag));box-shadow:0 6px 18px rgba(0,0,0,0.6)}
 
-/* Hero & copy */
-.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
-.copy{max-width:720px}
-h1{font-family:Cinzel,serif;font-size:42px;color:#ffd8a6;margin-bottom:8px;text-shadow:0 6px 18px rgba(255,43,43,.25)}
-p{font-size:15px;line-height:1.45;margin-bottom:10px;color:#dbc7a3}
-.cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-.cta{padding:12px 20px;border-radius:12px;font-weight:800;cursor:pointer}
-.cta.primary{background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#111;box-shadow:0 12px 36px rgba(255,43,43,.18)}
-.cta.ghost{background:transparent;border:1px solid rgba(255,43,43,.12);color:var(--muted)}
+  /* container */
+  .container{max-width:1200px;margin:0 auto;padding:26px;padding-top:120px;position:relative;z-index:210}
 
-/* Grid cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:16px}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border-radius:12px;overflow:hidden;border:1px solid rgba(255,43,43,.06);box-shadow:0 6px 22px rgba(0,0,0,.5);transition:transform .22s ease}
-.card:hover{transform:translateY(-8px)}
-.card img{display:block;width:100%;height:140px;object-fit:cover}
-.meta{padding:10px;text-align:center;font-weight:700;color:#ffd9a8}
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 360px;gap:26px;align-items:start}
+  .card-hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:22px;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow);position:relative;overflow:visible}
+  h1{font-family:Orbitron, sans-serif;font-size:40px;color:var(--neon-cyan);margin:0 0 8px;text-shadow:0 8px 34px rgba(0,240,255,0.08)}
+  p.lead{color:var(--muted);margin:6px 0 8px;line-height:1.45}
 
-/* Portal & download */
-.portal-wrap{text-align:center;margin-top:26px}
-.portal{display:inline-block;padding:14px 36px;border-radius:999px;background:linear-gradient(180deg,var(--accent),#7b0000);color:#100;font-weight:900;text-decoration:none;box-shadow:0 0 24px rgba(255,43,43,.35)}
-.download-apps .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  /* bonus */
+  .bonus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+  .bonus{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);box-shadow: 0 10px 30px rgba(0,0,0,0.5);transition:transform .22s ease, box-shadow .22s ease;position:relative}
+  .bonus:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+  .bonus .title{font-family:Orbitron; color:var(--neon-amber); font-weight:800; margin-bottom:6px}
+  .bonus .desc{font-weight:700;color:var(--muted);font-size:14px}
+  .fire-effect{position:absolute;left:12px;right:12px;bottom:-8px;height:36px;pointer-events:none;background:linear-gradient(90deg, rgba(255,120,40,0.08), rgba(197,107,255,0.06));filter:blur(10px);opacity:0.7;border-radius:8px}
 
-/* Effects */
-.rune,.qi-spark{position:fixed;pointer-events:none;z-index:90}
-.rune{font-size:14px;color:rgba(255,43,43,.65);text-shadow:0 0 8px #ff2b2b;animation:fall 6s linear infinite}
-@keyframes fall{0%{transform:translateY(-10vh)}100%{transform:translateY(120vh);opacity:0}}
-.qi-spark{width:6px;height:6px;border-radius:50%;box-shadow:0 0 16px #ff2b2b;background:radial-gradient(circle,#ff3 0%,#ff0000 80%);animation:qiGlow 3s infinite}
-@keyframes qiGlow{0%{opacity:.2;transform:scale(.6)}50%{opacity:.9;transform:scale(1.6)}100%{opacity:.2;transform:scale(.6)}}
+  /* REGISTER GRID */
+  .register-card{margin-top:14px;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.007));box-shadow:0 12px 34px rgba(0,0,0,0.6)}
+  .register-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:10px}
+  .reg-card{background: rgba(255,255,255,0.03);padding:14px;border-radius:12px;backdrop-filter: blur(8px);text-align:center;border:1px solid rgba(255,255,255,0.06);transition: transform .18s ease, box-shadow .18s ease; cursor:pointer}
+  .reg-card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(0,0,0,0.6), 0 0 18px rgba(0,240,255,0.08)}
+  .reg-logo{display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+  .reg-logo img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+  .reg-title{font-weight:800;color:var(--neon-cyan);text-shadow:0 0 8px rgba(0,240,255,0.08);margin-bottom:4px}
+  .reg-sub{font-size:13px;color:#9ddfcf}
 
-/* lightning overlay */
-.lightning-overlay{position:fixed;inset:0;pointer-events:none;background-image:url('https://static.gwvkyk.com/media/red-lightning-overlay.png');background-size:cover;mix-blend-mode:screen;opacity:0;animation:flash 6s infinite;z-index:80}
-@keyframes flash{0%,88%,100%{opacity:0}90%{opacity:.68}93%{opacity:.22}95%{opacity:.9}}
+  /* CTA */
+  .cta-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .cta{padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer;border:none}
+  .cta.primary{background:linear-gradient(180deg,var(--neon-cyan),var(--neon-mag));color:#061016;box-shadow:0 10px 30px rgba(0,240,255,0.08)}
+  .cta.ghost{border:1px solid rgba(255,255,255,0.06);color:var(--muted);background:transparent}
 
-/* footer */
-.footer{margin-top:44px;padding:18px 0;border-top:1px solid rgba(255,255,255,.02);color:#a68e6a;font-size:13px;text-align:center}
+  .section-title{font-family:Orbitron, sans-serif;color:var(--neon-mag);margin:18px 0 8px}
 
-@media(max-width:420px){h1{font-size:28px}}
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .card{background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);transition:transform .18s;box-shadow:0 8px 26px rgba(0,0,0,0.6)}
+  .card:hover{transform:translateY(-8px)}
+  .card img{width:100%;height:120px;object-fit:cover;display:block}
+  .meta{padding:12px;text-align:center;font-weight:800;color:var(--muted)}
+
+  /* side panel */
+  .side-panel{display:flex;flex-direction:column;gap:12px}
+  .panel{background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+  .neon{color:var(--neon-mag);text-shadow:0 6px 20px rgba(197,107,255,0.06)}
+
+  /* collapsible mini games */
+  .mini-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:6px 8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+  .mini-body{display:block;transition:max-height .28s ease;padding-top:8px;overflow:hidden}
+
+  /* download app */
+  .download-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+  .app-card{display:flex;gap:12px;align-items:center;padding:8px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.03)}
+  .app-left{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(180deg,#06131a,#082426);box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+  .app-left img{width:44px;height:44px;object-fit:contain}
+  .app-info{flex:1}
+  .app-info .title{font-weight:800;color:var(--muted)}
+  .app-info .sub{font-size:13px;color:#9ddfcf}
+  .download-actions{display:flex;gap:8px;align-items:center}
+  .download-btn{padding:8px 12px;border-radius:10px;background:linear-gradient(180deg,var(--neon-cyan),var(--neon-mag));color:#041016;font-weight:800;cursor:pointer;border:none}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:600;opacity:0;pointer-events:none;transition:opacity .18s}
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .modal{width:520px;max-width:95%;background:linear-gradient(180deg, rgba(5,7,10,0.96), rgba(10,12,18,0.98));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 60px rgba(0,0,0,0.7)}
+  .modal h3{margin:0 0 8px;color:var(--neon-cyan)}
+
+  /* REGISTER ICON: NEON BORDER + ROTATE + GLOW (added) */
+  .reg-logo{
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    padding: 2px; /* space for gradient border */
+    background: linear-gradient(135deg, #00faff, #ff00ea);
+    display:flex;align-items:center;justify-content:center;
+    transition: transform .30s ease, box-shadow .30s ease;
+    margin-bottom:8px;
+  }
+  .reg-logo img{
+    width:100%;
+    height:100%;
+    border-radius:14px;
+    object-fit:cover;
+    transition: transform .30s ease;
+  }
+  /* hover only on devices that support hover */
+  @media (hover:hover){
+    .reg-card:hover .reg-logo{
+      transform: scale(1.15) rotate(5deg);
+      box-shadow:
+        0 0 14px rgba(0,255,255,0.6),
+        0 0 26px rgba(255,0,255,0.5),
+        0 0 40px rgba(0,255,255,0.35);
+    }
+    .reg-card:hover .reg-logo img{
+      transform: scale(1.12);
+    }
+  }
+  /* mobile size */
+  @media(max-width:600px){
+    .reg-logo{
+      width: 65px;
+      height: 65px;
+      border-radius:14px;
+      padding:2px;
+    }
+    .reg-logo img{ border-radius:12px; }
+  }
+
+  /* TICKER — NEON FULL GRADIENT (VERSION 4) */
+  .ticker-wrap{
+    margin-top:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:210;
+    pointer-events:auto;
+  }
+  .ticker{
+    width:100%;
+    max-width:1200px;
+    background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;
+    padding:10px 12px;
+    border:1px solid rgba(255,255,255,0.04);
+    backdrop-filter:blur(8px);
+    box-shadow:0 12px 34px rgba(0,0,0,0.6);
+    overflow:hidden;
+    position:relative;
+  }
+  .ticker-track{
+    display:block;
+    white-space:nowrap;
+    will-change:transform;
+    animation:scroll-left 22s linear infinite;
+  }
+  .ticker-item{
+    display:inline-block;
+    margin-right:48px;
+    font-weight:800;
+    font-family:Orbitron, sans-serif;
+    font-size:18px;
+    letter-spacing:0.6px;
+    padding:6px 10px;
+    background:linear-gradient(90deg,var(--neon-cyan),var(--neon-mag));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:
+      0 0 6px rgba(197,107,255,0.12),
+      0 0 16px rgba(0,240,255,0.12),
+      0 6px 30px rgba(0,0,0,0.6);
+  }
+  @keyframes scroll-left{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  .muted{color:#9dbbb3;font-size:13px}
+
+  /* responsive */
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr}
+    .side-panel{order:2}
+    .card-hero{order:1}
+    .container{padding-top:100px}
+    .bonus-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    nav{padding:8px 12px}
+    h1{font-size:26px}
+    .app-left{width:48px;height:48px}
+    .card img{height:100px}
+    .ticker-item{font-size:15px;margin-right:28px}
+  }
+
+  /* small helpers */
+  .download-btn{padding:8px 12px;border-radius:10px;background:linear-gradient(180deg,var(--neon-cyan),var(--neon-mag));color:#041016;font-weight:800;cursor:pointer;border:none}
 </style>
 </head>
 <body>
 
-<!-- Background overlay & floating visuals -->
-<div class="lightning-overlay" aria-hidden="true"></div>
-
-<!-- Sword (animated) -->
-<img src="https://static.gwvkyk.com/media/4f956a0b96296b8206158.png" class="sword" alt="Flying Demon Sword">
-
-<!-- Demon fixed, sejajar di atas (pointer-events none agar tidak mengganggu klik) -->
-<div class="demon-wrap" aria-hidden="true">
-  <img src="https://static.gwvkyk.com/media/de813bf596296f37d8800.png" alt="demon-left">
-  <img src="https://static.gwvkyk.com/media/647942a696296ba46a99f.png" alt="demon-center">
-  <img src="https://static.gwvkyk.com/media/9c877e0796296f48a5d6f.png" alt="demon-right">
-</div>
-
-<!-- Navbar -->
-<nav role="navigation" aria-label="Main">
-  <div class="brand">☠ Cyber Hell Dragon</div>
-  <div class="links" aria-hidden="false">
-    <a href="#register">Oneplay</a>
-    <a href="#register">MBS888</a>
-    <a href="#register">GE88</a>
-    <a href="#register">KOI8</a>
+  <!-- VIDEO BACKGROUND -->
+  <div class="bg-video-wrap" aria-hidden="true">
+    <video autoplay muted loop playsinline poster="" id="bgVideo">
+      <source src="https://cdn.coverr.co/videos/coverr-neon-city-lights-1576_1280x720.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
-  <a class="primary" href="https://t.me/GE88SG_CS4" target="_blank" rel="noopener">Trusted Singapore Company</a>
-</nav>
+  <div class="bg-overlay" aria-hidden="true"></div>
 
-<div class="container">
+  <!-- NAV -->
+  <nav aria-label="Main navigation">
+    <div class="brand">TrustedSite • Singapore • 2025
+ </div>
 
-  <!-- Hero -->
-  <section class="hero" id="top">
-    <div class="copy">
-      <h1>Claim Free Credit</h1>
+    <div class="nav-right" role="navigation" aria-label="Top links">
+      <a class="nav-link" href="#register">Register</a>
+      <a class="nav-link" href="#games">Mini Games</a>
 
-      <p><strong>ONEPLAY BONUS</strong></p>
-      <p>Register Free Credit $3, Welcome Bonus 168% ; Daily Check in Bonus $24; Social media Bonus $30; Total Daily Mission $48; Total Weekly Mission $228; Rebate 5%; Lucky Spin.</p>
+      <button id="themeToggle" class="toggle" aria-pressed="false" title="Toggle dark / light">
+        <span class="dot" aria-hidden="true"></span>
+        <span style="font-weight:700;color:var(--muted);font-size:13px;margin-left:6px">Mode</span>
+      </button>
 
-      <p><strong>MBS888 BONUS</strong></p>
-      <p>Register Free Credit $8, Welcome Bonus 100% ; Daily Check in Bonus $24; KYC Bonus $40; Total Daily Mission $135; Total Weekly Mission $500; Rebate 5% ; Lucky Spin.</p>
+      <a class="btn-primary" href="https://t.me/TJia92" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </nav>
 
-      <p><strong>GE88 BONUS</strong></p>
-      <p>Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Follow Stay Ahead $20; Total Daily Mission $270; Total Weekly Mission $755; Rebate 5%.</p>
+  <div class="container">
 
-      <p><strong>KOI8 BONUS</strong></p>
-      <p>Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Social Media Bonus $20; Total Daily Mission $135; Total Weekly Mission $500; Rebate 10%.</p>
+    <div class="hero">
 
-      <p>Register to unlock Free credit and bonus spins.</p>
-      <p>Minigames can only be played using a special code — Click Request Code, start playing instantly, and stand a chance to win exciting prizes. Jump in now, have fun, and enjoy the thrill of winning as you play.</p>
+      <!-- HERO (CENTER) -->
+      <div class="card-hero" role="region" aria-labelledby="hero-title">
+        <h1 id="hero-title">— Claim Free Credit — </h1>
 
-      <div class="cta-row">
-        <a id="portalLink" class="cta primary" href="https://t.me/GE88SG_CS4" target="_blank" rel="noopener" data-text="CALL THE ALTAR">🔥 Request Code Minigames</a>
-        <button class="cta ghost" id="playAmbience">▶ Demo</button>
+        <!-- BONUS GRID -->
+        <div class="bonus-grid" aria-hidden="false">
+          <div class="bonus" id="oneplay">
+            <div class="title">ONEPLAY BONUS</div>
+            <div class="desc">Register Free Credit $3, Welcome Bonus 168% ; Daily Check in Bonus $24; Social media Bonus $30; Total Daily Mission $48; Total Weekly Mission $228; Rebate 5%; Lucky Spin</div>
+          </div>
+
+          <div class="bonus" id="mbs888">
+            <div class="title">MBS888 BONUS</div>
+            <div class="desc">Register Free Credit $8, Welcome Bonus 100% ; Daily Check in Bonus $24; KYC Bonus $40; Total Daily Mission $135; Total Weekly Mission $500; Rebate 10% ; Lucky Spin.</div>
+          </div>
+
+          <div class="bonus" id="ge88">
+            <div class="title">GE88 BONUS</div>
+            <div class="desc">Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Follow Stay Ahead $20; Total Daily Mission $270; Total Weekly Mission $755; Rebate 5%.</div>
+          </div>
+
+          <div class="bonus" id="koi8">
+            <div class="title">KOI8 BONUS</div>
+            <div class="desc">Register Free Credit $8, Starter Pack Bonus; Welcome Bonus 100%; Daily Check in $24; Social Media Bonus $20; Total Daily Mission $135; Total Weekly Mission $500; Rebate 5%.</div>
+          </div>
+        </div>
+
+        <div class="fire-effect" aria-hidden="true"></div>
+
+        <!-- REGISTER GRID (A) — under BONUS, before CTA -->
+        <div id="register" class="register-card" role="region" aria-labelledby="register-title">
+          <h2 id="register-title" class="neon" style="margin:0;font-size:35px">— Register & Claim Free Credit —</h2>
+
+          <div class="register-grid" style="margin-top:10px">
+            <!-- ONEPLAY -->
+            <a class="reg-card" href="https://1playsg.vip/RFONEPLAYLIYANAFB" target="_blank" rel="noopener">
+              <div class="reg-logo"><img src="https://static.gwvkyk.com/media/bf5d8b3931296ff662504.jpg" alt="Oneplay logo"></div>
+              <div class="reg-title">ONEPLAY</div>
+              <div class="reg-sub">Free Credit $3</div>
+            </a>
+
+            <!-- MBS888 -->
+            <a class="reg-card" href="https://mbs888.online/RFMBS888STELLAFB" target="_blank" rel="noopener">
+              <div class="reg-logo"><img src="https://static.gwvkyk.com/media/e223d5d8312960c4f5a53.jpg" alt="MBS888 logo"></div>
+              <div class="reg-title">MBS888</div>
+              <div class="reg-sub">Free Credit $8</div>
+            </a>
+
+            <!-- GE88 -->
+            <a class="reg-card" href="https://ge88s.club/RFGE88BECCAFB" target="_blank" rel="noopener">
+              <div class="reg-logo"><img src="https://static.gwvkyk.com/media/7dd408f831296a183172f.jpg" alt="GE88 logo"></div>
+              <div class="reg-title">GE88</div>
+              <div class="reg-sub">Free Credit $8</div>
+            </a>
+
+            <!-- KOI8 -->
+            <a class="reg-card" href="https://koi8.me/RFKOI8THESAFB" target="_blank" rel="noopener">
+              <div class="reg-logo"><img src="https://static.gwvkyk.com/media/0bfe6ea8312966e07732e.jpg" alt="KOI8 logo"></div>
+              <div class="reg-title">KOI8</div>
+              <div class="reg-sub">Free Credit $8</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-row" role="group" aria-label="Primary actions">
+          <a class="cta primary" href="https://t.me/GE88SG_CS4" target="_blank">Request Minigame Code</a>
+          <button class="cta ghost" id="demoBtn">▶ Demo</button>
+        </div>
       </div>
 
-      <div class="small-meta">Safe & secure. Links open in new tab.</div>
+      <!-- SIDE PANEL -->
+      <aside class="side-panel" role="complementary" aria-labelledby="side-panel-title">
+        <!-- MINIGAMES COLLAPSIBLE -->
+        <div class="panel" aria-labelledby="mini-games-title">
+          <div class="mini-collapsible">
+            <div class="mini-header" id="miniHeader" role="button" aria-expanded="true" tabindex="0">
+              <div style="display:flex;gap:10px;align-items:center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 18v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4.9 4.9l2.8 2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16.3 16.3l2.8 2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <h3 id="mini-games-title" class="neon" style="margin:0;font-size:16px">Mini Games</h3>
+              </div>
+              <div class="mini-toggle" id="miniToggleBtn">▲</div>
+            </div>
+
+            <div id="miniBody" class="mini-body" style="max-height:1200px">
+              <div class="grid" style="grid-template-columns:1fr;gap:12px;margin-top:12px" id="games" aria-live="polite">
+                <a class="card" href="https://gesg8899-prog.github.io/unique-code-gate/gate" target="_blank" rel="noopener">
+                  <img src="https://static.gwvkyk.com/media/068d205a04296781c899f.jpg" alt="Scratch Card">
+                  <div class="meta">Scratch Card</div>
+                </a>
+
+                <a class="card" href="https://gesg8899-prog.github.io/unique-code-gate/player_gate" target="_blank" rel="noopener">
+                  <img src="https://static.gwvkyk.com/media/2aa1952c04296bdc1ec54.jpg" alt="Plinko">
+                  <div class="meta">Plinko</div>
+                </a>
+
+                <a class="card" href="#" aria-disabled="true">
+                  <img src="https://static.gwvkyk.com/media/fb21d61c042966932f5d0.jpg" alt="Spin Wheel">
+                  <div class="meta">Spin Wheel</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOWNLOAD APPS -->
+        <div class="panel" aria-labelledby="download-title">
+          <h3 id="download-title" class="neon">Download Apps</h3>
+          <div class="download-grid" role="list">
+            <div class="app-card" role="listitem" data-appid="mega888" data-name="MEGA888" data-version="5.2" data-change="Fixed minor bugs; Improved stability." data-download="https://m3.mega56.com/mega/index.html" data-img="https://static.gwvkyk.com/media/2cb6b7b5862967d4a302e.png">
+              <div class="app-left"><img src="https://static.gwvkyk.com/media/2cb6b7b5862967d4a302e.png" alt="MEGA888"></div>
+              <div class="app-info"><div class="title">MEGA888</div><div class="sub">Android</div></div>
+              <div class="download-actions"><button class="download-btn" data-action="download">Download</button><button class="download-btn" data-action="preview">Preview</button></div>
+            </div>
+
+            <div class="app-card" role="listitem" data-appid="pussy888" data-name="PUSSY888" data-version="4.9" data-change="New games added; Faster load times." data-download="https://patch.plkdj8.com/pussy888/appsetup/apk/pussy888.apk" data-img="https://static.gwvkyk.com/media/51560315862967d068e73.png">
+              <div class="app-left"><img src="https://static.gwvkyk.com/media/51560315862967d068e73.png" alt="PUSSY888"></div>
+              <div class="app-info"><div class="title">PUSSY888</div><div class="sub">Android</div></div>
+              <div class="download-actions"><button class="download-btn" data-action="download">Download</button><button class="download-btn" data-action="preview">Preview</button></div>
+            </div>
+
+            <div class="app-card" role="listitem" data-appid="918kiss" data-name="918KISS" data-version="3.8" data-change="UI polish; Compatibility updates." data-download="https://patch.jaswq9.com/apk/918Kiss.apk" data-img="https://static.gwvkyk.com/media/29d74a17862961ba6b79d.png">
+              <div class="app-left"><img src="https://static.gwvkyk.com/media/29d74a17862961ba6b79d.png" alt="918KISS"></div>
+              <div class="app-info"><div class="title">918KISS</div><div class="sub">Android </div></div>
+              <div class="download-actions"><button class="download-btn" data-action="download">Download</button><button class="download-btn" data-action="preview">Preview</button></div>
+            </div>
+
+            <div class="app-card" role="listitem" data-appid="918kaya" data-name="918KAYA" data-version="2.6" data-change="Starter pack included; Minor fixes." data-download="https://appdownload.jra777.com/" data-img="https://static.gwvkyk.com/media/d0c5bc67862969751b2fb.png">
+              <div class="app-left"><img src="https://static.gwvkyk.com/media/d0c5bc67862969751b2fb.png" alt="918KAYA"></div>
+              <div class="app-info"><div class="title">918KAYA</div><div class="sub">Android </div></div>
+              <div class="download-actions"><button class="download-btn" data-action="download">Download</button><button class="download-btn" data-action="preview">Preview</button></div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;font-size:13px;color:#9ddfcf">Click <strong>Download</strong>.</div>
+        </div>
+
+        <div class="panel"><h3 class="neon">Portal</h3><a class="btn-primary" href="https://t.me/TJia92" target="_blank">Join Telegram</a></div>
+      </aside>
     </div>
 
-    <!-- Quick Register Cards -->
-    <aside>
-      <div class="grid" id="register" style="max-width:380px;">
-        <a class="card" href="https://1playsg.vip/RFONEPLAYLIYANAFB" target="_blank" rel="noopener"><img src="https://static.gwvkyk.com/media/bf5d8b3931296ff662504.jpg" alt="Oneplay"><div class="meta">Register Oneplay</div></a>
-        <a class="card" href="https://mbs888.online/RFMBS888STELLAFB" target="_blank" rel="noopener"><img src="https://static.gwvkyk.com/media/e223d5d8312960c4f5a53.jpg" alt="MBS888"><div class="meta">Register MBS888</div></a>
-        <a class="card" href="https://ge88s.club/RFGE88BECCAFB" target="_blank" rel="noopener"><img src="https://static.gwvkyk.com/media/7dd408f831296a183172f.jpg" alt="GE88"><div class="meta">Register GE88</div></a>
-        <a class="card" href="https://koi8.me/RFKOI8THESAFB" target="_blank" rel="noopener"><img src="https://static.gwvkyk.com/media/0bfe6ea8312966e07732e.jpg" alt="KOI8"><div class="meta">Register KOI8</div></a>
+    <!-- TICKER (replaces All Download Apps) -->
+    <div class="ticker-wrap" aria-hidden="false">
+      <div class="ticker" role="region" aria-label="Running promotions">
+        <div class="ticker-track" id="tickerTrack">
+          <span class="ticker-item">🔥 FREE CREDIT ACTIVE TODAY — ONEPLAY $3 — MBS888 $8 — GE88 STARTER PACK — KOI8 STARTER PACK — CLAIM FAST 🔥</span>
+          <span class="ticker-item">✨ TOP PROMO: Welcome Bonus 168% — DAILY REWARDS — JOIN TELEGRAM ✨</span>
+          <span class="ticker-item">⚡ LIMITED: Spin & Scratch codes — Request now via Telegram ⚡</span>
+
+          <!-- Repeat to allow smooth -50% translate animation -->
+          <span class="ticker-item">🔥 FREE CREDIT ACTIVE TODAY — ONEPLAY $3 — MBS888 $8 — GE88 STARTER PACK — KOI8 STARTER PACK — CLAIM FAST 🔥</span>
+          <span class="ticker-item">✨ TOP PROMO: Welcome Bonus 168% — DAILY REWARDS — JOIN TELEGRAM ✨</span>
+          <span class="ticker-item">⚡ LIMITED: Spin & Scratch codes — Request now via Telegram ⚡</span>
+        </div>
       </div>
-    </aside>
-  </section>
-
-  <!-- Mini Games -->
-  <section id="games" aria-labelledby="mini-games">
-    <h2 id="mini-games" style="font-family:Cinzel, serif;color:#ffd9a8;margin:16px 0;">Mini Games</h2>
-    <div class="grid">
-      <a class="card" href="https://gesg8899-prog.github.io/unique-code-gate/gate" target="_blank" rel="noopener">
-        <img src="https://static.gwvkyk.com/media/068d205a04296781c899f.jpg" alt="Scratch Card">
-        <div class="meta">Scratch Card</div>
-      </a>
-
-      <a class="card" href="https://gesg8899-prog.github.io/unique-code-gate/player_gate" target="_blank" rel="noopener">
-        <img src="https://static.gwvkyk.com/media/2aa1952c04296bdc1ec54.jpg" alt="Plinko">
-        <div class="meta">Plinko</div>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <img src="https://static.gwvkyk.com/media/fb21d61c042966932f5d0.jpg" alt="Spin Wheel">
-        <div class="meta">Spin Wheel</div>
-      </a>
     </div>
-  </section>
 
-  <!-- Download Apps -->
-  <section class="download-apps" aria-labelledby="download-apps" style="margin-top:28px;">
-    <h2 id="download-apps" style="font-family:Cinzel, serif;color:#ffd9a8;margin:16px 0;">Download Apps</h2>
-    <div class="grid">
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/2cb6b7b5862967d4a302e.png" alt="MEGA888"><div class="meta">MEGA888</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/51560315862967d068e73.png" alt="PUSSY888"><div class="meta">PUSSY888</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/29d74a17862961ba6b79d.png" alt="918KISS"><div class="meta">918KISS</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/d0c5bc67862969751b2fb.png" alt="918KAYA"><div class="meta">918KAYA</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/c85a9a03c6296e0bafd46.png" alt="EVO888"><div class="meta">EVO888</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/feccde93c629696f332c6.png" alt="GREATWALL"><div class="meta">GREATWALL</div></a>
-      <a class="card" href="#"><img src="https://static.gwvkyk.com/media/0b88ecc3c6296a9ea1986.png" alt="LIONKING"><div class="meta">LIONKING</div></a>
-    </div>
-  </section>
-
-  <!-- Portal Altar -->
-  <div class="portal-wrap">
-    <a class="portal" id="portalButton" href="https://t.me/GE88SG_CS4" target="_blank" rel="noopener" data-text="CALL THE ALTAR">Request Code Minigames 🔑</a>
+    <footer class="footer" style="margin-top:18px;color:#8fbfcf">© TrustedSite • Singapore • 2025</footer>
   </div>
 
-  <footer class="footer">© TrustedSite • Singapore • 2025</footer>
-</div>
+  <!-- MODAL -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" role="document">
+      <button id="modalClose" aria-label="Close" style="float:right;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer">✕</button>
+      <h3 id="modalTitle">App Name</h3>
+      <div class="meta" id="modalVersion">v0.0</div>
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+        <img id="modalImg" src="" alt="" style="width:84px;height:84px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.02);padding:8px">
+        <div><div class="muted" id="modalShort">Short description & highlights.</div></div>
+      </div>
 
-<!-- Audio -->
-<audio id="ambience" loop>
-  <source src="https://static.gwvkyk.com/media/demon-ambience.mp3" type="audio/mpeg">
-</audio>
+      <div style="font-weight:800;margin-bottom:8px">Changelog</div>
+      <div class="changelog" id="modalChangelog">- Release notes will appear here.</div>
 
-<!-- SCRIPTS -->
-<script>
-// Floating runes + qi sparks
-(function createFX(){
-  const runes = ['魔','邪','暗','魂','烙','诅','魇','裂'];
-  for(let i=0;i<22;i++){
-    const r = document.createElement('div');
-    r.className = 'rune';
-    r.textContent = runes[Math.floor(Math.random()*runes.length)];
-    r.style.left = (Math.random()*100)+'vw';
-    r.style.top = (-5 - Math.random()*10)+'vh';
-    r.style.animationDelay = (Math.random()*6)+'s';
-    document.body.appendChild(r);
-  }
-  for(let i=0;i<26;i++){
-    const q = document.createElement('div');
-    q.className = 'qi-spark';
-    q.style.left = (Math.random()*100)+'vw';
-    q.style.top = (Math.random()*100)+'vh';
-    q.style.animationDuration = (1 + Math.random()*2)+'s';
-    document.body.appendChild(q);
-  }
-})();
+      <div class="actions">
+        <div class="actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">
+          <a id="modalDownload" class="download-btn" href="#" download>Download APK</a>
+          <button id="modalCloseBtn" class="download-btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-// Parallax pointer effect for background layers (if present)
-const layers = document.querySelectorAll('.parallax-layer');
-window.addEventListener('mousemove', e=>{
-  const x=(e.clientX-window.innerWidth/2)/window.innerWidth;
-  const y=(e.clientY-window.innerHeight/2)/window.innerHeight;
-  layers.forEach(layer=>{
-    const depth=parseFloat(layer.getAttribute('data-depth'))||0;
-    layer.style.transform = `translate3d(${x*depth*40}px,${y*depth*30}px,0)`;
-  });
-});
+  <!-- SCRIPTS -->
+  <script>
+    // THEME toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const rootBody = document.body;
+    function applyTheme(theme){
+      if(theme === 'light'){ rootBody.classList.add('light'); themeToggle.setAttribute('aria-pressed','true'); }
+      else { rootBody.classList.remove('light'); themeToggle.setAttribute('aria-pressed','false'); }
+    }
+    const saved = localStorage.getItem('mn-theme') || 'dark';
+    applyTheme(saved);
+    themeToggle.addEventListener('click', ()=>{
+      const now = rootBody.classList.contains('light') ? 'dark' : 'light';
+      applyTheme(now);
+      localStorage.setItem('mn-theme', now);
+    });
 
-// Portal glitch hover
-const portalBtn = document.getElementById('portalButton');
-if(portalBtn){
-  portalBtn.classList.add('glitch');
-  portalBtn.setAttribute('data-text', portalBtn.textContent);
-  portalBtn.addEventListener('mouseenter', ()=>{
-    portalBtn.classList.add('active');
-    setTimeout(()=>portalBtn.classList.remove('active'),360);
-  });
-}
+    // Collapsible Mini Games
+    const miniHeader = document.getElementById('miniHeader');
+    const miniBody = document.getElementById('miniBody');
+    const miniToggleBtn = document.getElementById('miniToggleBtn');
+    let miniOpen = true;
+    function setMiniState(open){
+      miniOpen = !!open;
+      if(miniOpen){
+        miniBody.style.maxHeight = '1200px';
+        miniToggleBtn.textContent = '▲';
+        miniHeader.setAttribute('aria-expanded','true');
+      } else {
+        miniBody.style.maxHeight = '0';
+        miniToggleBtn.textContent = '▼';
+        miniHeader.setAttribute('aria-expanded','false');
+      }
+    }
+    miniHeader.addEventListener('click', ()=> setMiniState(!miniOpen));
+    miniHeader.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMiniState(!miniOpen); } });
 
-// Play ambience toggle
-const ambience = document.getElementById('ambience');
-const playBtn = document.getElementById('playAmbience');
-if(playBtn && ambience){
-  playBtn.addEventListener('click', ()=>{
-    if(ambience.paused){ ambience.volume = 0.45; ambience.play(); playBtn.textContent='⏸ Demo'; }
-    else { ambience.pause(); playBtn.textContent='▶ Demo'; }
-  });
-}
-</script>
+    // Modal logic
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalVersion = document.getElementById('modalVersion');
+    const modalImg = document.getElementById('modalImg');
+    const modalChangelog = document.getElementById('modalChangelog');
+    const modalShort = document.getElementById('modalShort');
+    const modalDownload = document.getElementById('modalDownload');
+    const modalClose = document.getElementById('modalClose');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    function openModal(data){
+      modalTitle.textContent = data.name || 'App';
+      modalVersion.textContent = 'v' + (data.version || '—');
+      modalImg.src = data.img || '';
+      modalImg.alt = data.name || 'app';
+      modalShort.textContent = data.short || (data.name + ' — Official app');
+      modalChangelog.textContent = data.change || '- No changelog available.';
+      modalDownload.href = data.download || '#';
+      modalDownload.setAttribute('download','');
+      modalBackdrop.classList.add('open');
+      modalBackdrop.setAttribute('aria-hidden','false');
+      modalClose.focus();
+    }
+    function closeModal(){ modalBackdrop.classList.remove('open'); modalBackdrop.setAttribute('aria-hidden','true'); }
+
+    // Preview & Download handlers
+    document.querySelectorAll('[data-action]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const action = btn.getAttribute('data-action');
+        const parent = btn.closest('.app-card');
+        if(!parent) return;
+        const data = {
+          id: parent.getAttribute('data-appid'),
+          name: parent.getAttribute('data-name'),
+          version: parent.getAttribute('data-version'),
+          change: parent.getAttribute('data-change'),
+          download: parent.getAttribute('data-download'),
+          img: parent.getAttribute('data-img'),
+          short: parent.getAttribute('data-name') + ' — Trusted APK'
+        };
+        if(action === 'preview'){ openModal(data); }
+        else if(action === 'download'){
+          const url = data.download || '#';
+          const a = document.createElement('a');
+          a.href = url; a.target = '_blank'; a.rel = 'noopener';
+          document.body.appendChild(a); a.click(); a.remove();
+        }
+      });
+    });
+
+    // Clickable app-tile preview
+    document.querySelectorAll('.app-tile').forEach(tile=>{
+      tile.addEventListener('click', ()=>{
+        const data = {
+          name: tile.getAttribute('data-name'),
+          version: tile.getAttribute('data-version'),
+          change: tile.getAttribute('data-change'),
+          download: tile.getAttribute('data-download'),
+          img: tile.getAttribute('data-img'),
+          short: tile.getAttribute('data-name') + ' — Tap Download to get APK'
+        };
+        openModal(data);
+      });
+      tile.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); tile.click(); } });
+    });
+
+    // modal close
+    modalClose.addEventListener('click', closeModal);
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modalBackdrop.classList.contains('open')) closeModal(); });
+
+    // demo placeholder
+    document.getElementById('demoBtn')?.addEventListener('click', ()=>{ alert('Demo ambience toggle — add audio source or custom demo behavior here.'); });
+
+    // subtle animated particles (light)
+    (function fx(){
+      for(let i=0;i<8;i++){
+        const f = document.createElement('div');
+        f.style.position='fixed';
+        f.style.left=(Math.random()*100)+'vw';
+        f.style.top = (-10 - Math.random()*30)+'vh';
+        f.style.opacity=0.4+Math.random()*0.6;
+        f.style.width = (16 + Math.random()*18) + 'px';
+        f.style.height = f.style.width;
+        f.style.backgroundImage = "url('https://png.pngtree.com/png-vector/20220620/ourmid/pngtree-green-leaf-clipart-png-image_5110819.png')";
+        f.style.backgroundSize='contain';
+        f.style.backgroundRepeat='no-repeat';
+        f.style.pointerEvents='none';
+        f.style.transition='transform 10s linear';
+        document.body.appendChild(f);
+        setTimeout(()=>{ f.style.transform = 'translateY(120vh) rotate('+ (Math.random()*360) +'deg)'; }, 100 + i*200);
+        setTimeout(()=>{ f.remove(); }, 12000);
+      }
+    })();
+
+    // Ensure ticker continuous on small screens / if CSS can't handle: duplicate via JS
+    (function tickerDup(){
+      const track = document.getElementById('tickerTrack');
+      if(!track) return;
+      const parent = track.parentElement;
+      // compute children width
+      let totalWidth = 0;
+      Array.from(track.children).forEach(el => { totalWidth += el.offsetWidth; });
+      if(totalWidth < parent.offsetWidth){
+        const clone = track.innerHTML;
+        track.innerHTML += clone + clone;
+      }
+    })();
+
+    // initial mini state
+    setMiniState(true);
+
+    // expose setMiniState (used earlier)
+    function setMiniState(open){
+      const header = document.getElementById('miniHeader');
+      const body = document.getElementById('miniBody');
+      const toggle = document.getElementById('miniToggleBtn');
+      let miniOpen = !!open;
+      if(miniOpen){
+        body.style.maxHeight = '1200px';
+        toggle.textContent = '▲';
+        header.setAttribute('aria-expanded','true');
+      } else {
+        body.style.maxHeight = '0';
+        toggle.textContent = '▼';
+        header.setAttribute('aria-expanded','false');
+      }
+    }
+  </script>
 </body>
 </html>
